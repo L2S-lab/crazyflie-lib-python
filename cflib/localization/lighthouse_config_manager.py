@@ -25,11 +25,14 @@ Functionality to manage lighthouse system configuration (geometry and calibratio
 import time
 
 import yaml
-
-from cflib.crazyflie.mem import LighthouseBsCalibration
-from cflib.crazyflie.mem import LighthouseBsGeometry
-from cflib.crazyflie.mem import LighthouseMemHelper
-
+try:
+    from cflib.crazyflie.mem import LighthouseBsCalibration
+    from cflib.crazyflie.mem import LighthouseBsGeometry
+    from cflib.crazyflie.mem import LighthouseMemHelper
+except ImportError:
+    from ..crazyflie.mem import LighthouseBsCalibration
+    from ..crazyflie.mem import LighthouseBsGeometry
+    from ..crazyflie.mem import LighthouseMemHelper
 
 class LighthouseConfigFileManager:
     TYPE_ID = 'type'

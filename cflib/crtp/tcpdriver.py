@@ -29,15 +29,24 @@ import re
 import struct
 import threading
 from urllib.parse import urlparse
-
-from .crtpdriver import CRTPDriver
-from .crtpstack import CRTPPacket
-from .exceptions import WrongUriType
-from cflib.cpx import CPX
-from cflib.cpx import CPXFunction
-from cflib.cpx import CPXPacket
-from cflib.cpx import CPXTarget
-from cflib.cpx.transports import SocketTransport
+try:
+    from .crtpdriver import CRTPDriver
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from cflib.cpx import CPX
+    from cflib.cpx import CPXFunction
+    from cflib.cpx import CPXPacket
+    from cflib.cpx import CPXTarget
+    from cflib.cpx.transports import SocketTransport
+except ImportError:
+    from .crtpdriver import CRTPDriver
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from ..cpx import CPX
+    from ..cpx import CPXFunction
+    from ..cpx import CPXPacket
+    from ..cpx import CPXTarget
+    from ..cpx.transports import SocketTransport
 logger = logging.getLogger(__name__)
 
 __author__ = 'Bitcraze AB'

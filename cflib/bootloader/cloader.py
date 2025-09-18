@@ -31,11 +31,16 @@ import math
 import struct
 import time
 
-import cflib.crtp
-from .boottypes import Target
-from .boottypes import TargetTypes
-from cflib.crtp.crtpstack import CRTPPacket
-
+try:
+    import cflib.crtp
+    from .boottypes import Target
+    from .boottypes import TargetTypes
+    from cflib.crtp.crtpstack import CRTPPacket
+except ImportError:
+    from ..crtp import *
+    from .boottypes import Target
+    from .boottypes import TargetTypes
+    from ..crtp.crtpstack import CRTPPacket
 __author__ = 'Bitcraze AB'
 __all__ = ['Cloader']
 

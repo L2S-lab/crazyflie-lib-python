@@ -44,9 +44,10 @@ import time
 from queue import Empty
 from queue import Queue
 from threading import Thread
-
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-
+try:
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+except ImportError:
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
 
 class MotionCommander:
     """The motion commander"""

@@ -25,11 +25,14 @@ import copy
 
 import numpy as np
 import numpy.typing as npt
-
-from cflib.localization.lighthouse_bs_vector import LighthouseBsVector
-from cflib.localization.lighthouse_types import LhCfPoseSample
-from cflib.localization.lighthouse_types import Pose
-
+try:
+    from cflib.localization.lighthouse_bs_vector import LighthouseBsVector
+    from cflib.localization.lighthouse_types import LhCfPoseSample
+    from cflib.localization.lighthouse_types import Pose
+except ImportError:
+    from .lighthouse_bs_vector import LighthouseBsVector
+    from .lighthouse_types import LhCfPoseSample
+    from .lighthouse_types import Pose
 
 class LighthouseSystemScaler:
     """This class is used to re-scale a system based on various measurements."""

@@ -31,16 +31,24 @@ import queue
 import re
 import struct
 import threading
-
-from .crtpstack import CRTPPacket
-from .exceptions import WrongUriType
-from cflib.cpx import CPX
-from cflib.cpx import CPXFunction
-from cflib.cpx import CPXPacket
-from cflib.cpx import CPXTarget
-from cflib.cpx.transports import UARTTransport
-from cflib.crtp.crtpdriver import CRTPDriver
-
+try:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from cflib.cpx import CPX
+    from cflib.cpx import CPXFunction
+    from cflib.cpx import CPXPacket
+    from cflib.cpx import CPXTarget
+    from cflib.cpx.transports import UARTTransport
+    from cflib.crtp.crtpdriver import CRTPDriver
+except ImportError:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from ..cpx import CPX
+    from ..cpx import CPXFunction
+    from ..cpx import CPXPacket
+    from ..cpx import CPXTarget
+    from ..cpx.transports import UARTTransport
+    from ..crtp.crtpdriver import CRTPDriver    
 found_serial = True
 try:
     import serial.tools.list_ports as list_ports

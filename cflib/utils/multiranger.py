@@ -19,9 +19,12 @@
 #  GNU General Public License for more details.
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
-from cflib.crazyflie.log import LogConfig
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-
+try:
+    from cflib.crazyflie.log import LogConfig
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+except ImportError:
+    from ..crazyflie.log import LogConfig
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
 
 class Multiranger:
     FRONT = 'range.front'

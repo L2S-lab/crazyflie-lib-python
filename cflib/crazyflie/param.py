@@ -29,23 +29,40 @@ When a Crazyflie is connected it's possible to download a TableOfContent of all
 the parameters that can be written/read.
 
 """
-import copy
-import errno
-import logging
-import struct
-from collections import namedtuple
-from queue import Empty
-from queue import Queue
-from threading import Event
-from threading import Lock
-from threading import Thread
+try:
+    import copy
+    import errno
+    import logging
+    import struct
+    from collections import namedtuple
+    from queue import Empty
+    from queue import Queue
+    from threading import Event
+    from threading import Lock
+    from threading import Thread
 
-from .toc import Toc
-from .toc import TocFetcher
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.callbacks import Caller
+    from .toc import Toc
+    from .toc import TocFetcher
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.callbacks import Caller
+except ImportError:
+    import copy
+    import errno
+    import logging
+    import struct
+    from collections import namedtuple
+    from queue import Empty
+    from queue import Queue
+    from threading import Event
+    from threading import Lock
+    from threading import Thread
 
+    from .toc import Toc
+    from .toc import TocFetcher
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
+    from ..utils.callbacks import Caller
 __author__ = 'Bitcraze AB'
 __all__ = ['Param', 'ParamTocElement']
 

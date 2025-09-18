@@ -31,11 +31,14 @@ import logging
 import threading
 
 import cflinkcpp
-
-from .crtpstack import CRTPPacket
-from cflib.crtp.crtpdriver import CRTPDriver
-from cflib.crtp.radio_link_statistics import RadioLinkStatistics
-
+try:
+    from .crtpstack import CRTPPacket
+    from cflib.crtp.crtpdriver import CRTPDriver
+    from cflib.crtp.radio_link_statistics import RadioLinkStatistics
+except ImportError:
+    from .crtpstack import CRTPPacket
+    from .crtpdriver import CRTPDriver
+    from .radio_link_statistics import RadioLinkStatistics
 __author__ = 'Bitcraze AB'
 __all__ = ['CfLinkCppDriver']
 

@@ -20,10 +20,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 from __future__ import annotations
-
-from cflib.localization.lighthouse_types import LhCfPoseSample
-from cflib.localization.lighthouse_types import LhMeasurement
-
+try:
+    from cflib.localization.lighthouse_types import LhCfPoseSample
+    from cflib.localization.lighthouse_types import LhMeasurement
+except ImportError:
+    from .lighthouse_types import LhCfPoseSample
+    from .lighthouse_types import LhMeasurement
 
 class LighthouseSampleMatcher:
     """Utility class to match samples of measurements from multiple lighthouse base stations.

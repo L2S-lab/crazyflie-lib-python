@@ -21,9 +21,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 import logging
 
-from .memory_element import MemoryElement
-from cflib.utils.callbacks import Syncer
-
+try:
+    from .memory_element import MemoryElement
+    from cflib.utils.callbacks import Syncer
+except ImportError:
+    from .memory_element import MemoryElement
+    from ...utils.callbacks import Syncer
 logger = logging.getLogger(__name__)
 
 

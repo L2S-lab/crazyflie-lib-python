@@ -31,29 +31,52 @@ import logging
 import struct
 from threading import Lock
 
-from .deck_memory import DeckMemoryManager
-from .i2c_element import I2CElement
-from .led_driver_memory import LEDDriverMemory
-from .led_timings_driver_memory import LEDTimingsDriverMemory
-from .lighthouse_memory import LighthouseBsCalibration
-from .lighthouse_memory import LighthouseBsGeometry
-from .lighthouse_memory import LighthouseMemHelper
-from .lighthouse_memory import LighthouseMemory
-from .loco_memory import LocoMemory
-from .loco_memory_2 import LocoMemory2
-from .memory_element import MemoryElement
-from .memory_tester import MemoryTester
-from .multiranger_memory import MultirangerMemory
-from .ow_element import OWElement
-from .paa3905_memory import PAA3905Memory
-from .trajectory_memory import CompressedSegment
-from .trajectory_memory import CompressedStart
-from .trajectory_memory import Poly4D
-from .trajectory_memory import TrajectoryMemory
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.callbacks import Caller
-
+try:
+    from .deck_memory import DeckMemoryManager
+    from .i2c_element import I2CElement
+    from .led_driver_memory import LEDDriverMemory
+    from .led_timings_driver_memory import LEDTimingsDriverMemory
+    from .lighthouse_memory import LighthouseBsCalibration
+    from .lighthouse_memory import LighthouseBsGeometry
+    from .lighthouse_memory import LighthouseMemHelper
+    from .lighthouse_memory import LighthouseMemory
+    from .loco_memory import LocoMemory
+    from .loco_memory_2 import LocoMemory2
+    from .memory_element import MemoryElement
+    from .memory_tester import MemoryTester
+    from .multiranger_memory import MultirangerMemory
+    from .ow_element import OWElement
+    from .paa3905_memory import PAA3905Memory
+    from .trajectory_memory import CompressedSegment
+    from .trajectory_memory import CompressedStart
+    from .trajectory_memory import Poly4D
+    from .trajectory_memory import TrajectoryMemory
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.callbacks import Caller
+except ImportError:
+    from .deck_memory import DeckMemoryManager
+    from .i2c_element import I2CElement
+    from .led_driver_memory import LEDDriverMemory
+    from .led_timings_driver_memory import LEDTimingsDriverMemory
+    from .lighthouse_memory import LighthouseBsCalibration
+    from .lighthouse_memory import LighthouseBsGeometry
+    from .lighthouse_memory import LighthouseMemHelper
+    from .lighthouse_memory import LighthouseMemory
+    from .loco_memory import LocoMemory
+    from .loco_memory_2 import LocoMemory2
+    from .memory_element import MemoryElement
+    from .memory_tester import MemoryTester
+    from .multiranger_memory import MultirangerMemory
+    from .ow_element import OWElement
+    from .paa3905_memory import PAA3905Memory
+    from .trajectory_memory import CompressedSegment
+    from .trajectory_memory import CompressedStart
+    from .trajectory_memory import Poly4D
+    from .trajectory_memory import TrajectoryMemory
+    from ...crtp.crtpstack import CRTPPacket
+    from ...crtp.crtpstack import CRTPPort
+    from ...utils.callbacks import Caller
 __author__ = 'Bitcraze AB'
 __all__ = ['Memory', 'Poly4D', 'CompressedStart', 'CompressedSegment', 'MemoryElement',
            'LighthouseBsGeometry', 'LighthouseBsCalibration', 'LighthouseMemHelper',

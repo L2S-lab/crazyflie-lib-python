@@ -28,10 +28,14 @@ Used for sending control setpoints to the Crazyflie
 import struct
 import warnings
 
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.encoding import compress_quaternion
-
+try:
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
+    from ..utils.encoding import compress_quaternion
+except ImportError:
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.encoding import compress_quaternion
 __author__ = 'Bitcraze AB'
 __all__ = ['Commander']
 

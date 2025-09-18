@@ -20,9 +20,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 import yaml
-
-from cflib.crazyflie.param import PersistentParamState
-
+try:
+    from cflib.crazyflie.param import PersistentParamState
+except ImportError:
+    from ..crazyflie.param import PersistentParamState
 
 class ParamFileManager():
     """Reads and writes parameter configurations from file"""

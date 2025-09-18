@@ -31,12 +31,16 @@ import logging
 import queue
 import re
 import threading
-
-from .crtpstack import CRTPPacket
-from .exceptions import WrongUriType
-from cflib.crtp.crtpdriver import CRTPDriver
-from cflib.drivers.cfusb import CfUsb
-
+try:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from cflib.crtp.crtpdriver import CRTPDriver
+    from cflib.drivers.cfusb import CfUsb
+except ImportError:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from ..crtp.crtpdriver import CRTPDriver
+    from ..drivers.cfusb import CfUsb
 __author__ = 'Bitcraze AB'
 __all__ = ['UsbDriver']
 

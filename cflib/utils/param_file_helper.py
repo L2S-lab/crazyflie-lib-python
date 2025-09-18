@@ -20,10 +20,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 from threading import Event
-
-from cflib.crazyflie import Crazyflie
-from cflib.localization.param_io import ParamFileManager
-
+try:
+    from cflib.crazyflie import Crazyflie
+    from cflib.localization.param_io import ParamFileManager
+except ImportError:
+    from ..crazyflie import Crazyflie
+    from ..localization.param_io import ParamFileManager
 
 class ParamFileHelper:
     '''ParamFileHelper is a helper to synchonously write multiple paramteters

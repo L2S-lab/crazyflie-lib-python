@@ -29,8 +29,10 @@ a TOC for logging or parameters.
 import logging
 import struct
 
-from cflib.crtp.crtpstack import CRTPPacket
-
+try:
+    from cflib.crtp.crtpstack import CRTPPacket
+except ImportError:
+    from ..crtp.crtpstack import CRTPPacket
 __author__ = 'Bitcraze AB'
 __all__ = ['Toc', 'TocFetcher']
 

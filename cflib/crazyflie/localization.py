@@ -29,11 +29,16 @@ import collections
 import logging
 import struct
 
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.callbacks import Caller
-from cflib.utils.encoding import fp16_to_float
-
+try:
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.callbacks import Caller
+    from cflib.utils.encoding import fp16_to_float
+except ImportError:
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
+    from ..utils.callbacks import Caller
+    from ..utils.encoding import fp16_to_float
 __author__ = 'Bitcraze AB'
 __all__ = ['Localization', 'LocalizationPacket']
 

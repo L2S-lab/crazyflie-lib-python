@@ -48,13 +48,20 @@ from typing import Tuple
 from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
-import cflib.drivers.crazyradio as crazyradio
-from .crtpstack import CRTPPacket
-from .exceptions import WrongUriType
-from cflib.crtp.crtpdriver import CRTPDriver
-from cflib.crtp.radio_link_statistics import RadioLinkStatistics
-from cflib.drivers.crazyradio import Crazyradio
-
+try:
+    import cflib.drivers.crazyradio as crazyradio
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from cflib.crtp.crtpdriver import CRTPDriver
+    from cflib.crtp.radio_link_statistics import RadioLinkStatistics
+    from cflib.drivers.crazyradio import Crazyradio
+except ImportError:
+    from ..drivers.crazyradio import crazyradio
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from ..crtp.crtpdriver import CRTPDriver
+    from ..crtp.radio_link_statistics import RadioLinkStatistics
+    from ..drivers.crazyradio import Crazyradio
 
 __author__ = 'Bitcraze AB'
 __all__ = ['RadioDriver']

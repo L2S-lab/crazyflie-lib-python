@@ -26,9 +26,10 @@ from typing import NamedTuple
 import numpy as np
 import numpy.typing as npt
 from scipy.spatial.transform import Rotation
-
-from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
-
+try:
+    from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
+except ImportError:
+    from .lighthouse_bs_vector import LighthouseBsVectors
 
 class Pose:
     """ Holds the full pose (position and orientation) of an object.

@@ -3,11 +3,14 @@
 import datetime
 import logging
 import re
-
-from .crtpstack import CRTPPacket
-from .exceptions import WrongUriType
-from cflib.crtp.crtpdriver import CRTPDriver
-
+try:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from cflib.crtp.crtpdriver import CRTPDriver
+except ImportError:
+    from .crtpstack import CRTPPacket
+    from .exceptions import WrongUriType
+    from ..crtp.crtpdriver import CRTPDriver
 prrt_installed = True
 try:
     import prrt

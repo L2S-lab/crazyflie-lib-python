@@ -23,11 +23,16 @@ import time
 from collections import namedtuple
 from threading import Thread
 
-from cflib.crazyflie import Crazyflie
-from cflib.crazyflie.log import LogConfig
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-from cflib.crazyflie.syncLogger import SyncLogger
-
+try:
+    from cflib.crazyflie import Crazyflie
+    from cflib.crazyflie.log import LogConfig
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+    from cflib.crazyflie.syncLogger import SyncLogger
+except ImportError:
+    from ..crazyflie import Crazyflie
+    from ..crazyflie.log import LogConfig
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
+    from ..crazyflie.syncLogger import SyncLogger
 SwarmPosition = namedtuple('SwarmPosition', 'x y z')
 
 

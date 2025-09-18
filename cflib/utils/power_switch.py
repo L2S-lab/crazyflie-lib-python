@@ -25,10 +25,14 @@ a Crazyradio.
 """
 import time
 
-import cflib.crtp
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.radiodriver import RadioManager
-
+try:
+    import cflib.crtp
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.radiodriver import RadioManager
+except ImportError:
+    from ..crtp import *
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.radiodriver import RadioManager
 
 class PowerSwitch:
     BOOTLOADER_CMD_ALLOFF = 0x01

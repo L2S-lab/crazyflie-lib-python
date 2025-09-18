@@ -24,9 +24,10 @@ from __future__ import annotations
 import numpy as np
 import numpy.typing as npt
 import scipy.optimize
-
-from cflib.localization.lighthouse_types import Pose
-
+try:
+    from cflib.localization.lighthouse_types import Pose
+except ImportError:
+    from .lighthouse_types import Pose
 
 class LighthouseSystemAligner:
     """This class is used to align a lighthouse system to a few sampled positions"""

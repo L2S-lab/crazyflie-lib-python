@@ -27,9 +27,12 @@ Used for sending control setpoints to the Crazyflie
 """
 import logging
 
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-
+try:
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+except ImportError:
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
 __author__ = 'Bitcraze AB'
 __all__ = ['PlatformService']
 

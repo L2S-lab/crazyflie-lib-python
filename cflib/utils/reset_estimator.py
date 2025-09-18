@@ -1,9 +1,12 @@
 import time
-
-from cflib.crazyflie.log import LogConfig
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-from cflib.crazyflie.syncLogger import SyncLogger
-
+try:
+    from cflib.crazyflie.log import LogConfig
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+    from cflib.crazyflie.syncLogger import SyncLogger
+except ImportError:
+    from ..crazyflie.log import LogConfig
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
+    from ..crazyflie.syncLogger import SyncLogger
 
 def reset_estimator(crazyflie):
     if isinstance(crazyflie, SyncCrazyflie):

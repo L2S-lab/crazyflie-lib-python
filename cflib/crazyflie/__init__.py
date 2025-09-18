@@ -40,21 +40,36 @@ from threading import Lock
 from threading import Thread
 from threading import Timer
 
-import cflib.crtp
-from .appchannel import Appchannel
-from .commander import Commander
-from .console import Console
-from .extpos import Extpos
-from .link_statistics import LinkStatistics
-from .localization import Localization
-from .log import Log
-from .mem import Memory
-from .param import Param
-from .platformservice import PlatformService
-from .toccache import TocCache
-from cflib.crazyflie.high_level_commander import HighLevelCommander
-from cflib.utils.callbacks import Caller
-
+try:
+    import cflib.crtp
+    from .appchannel import Appchannel
+    from .commander import Commander
+    from .console import Console
+    from .extpos import Extpos
+    from .link_statistics import LinkStatistics
+    from .localization import Localization
+    from .log import Log
+    from .mem import Memory
+    from .param import Param
+    from .platformservice import PlatformService
+    from .toccache import TocCache
+    from cflib.crazyflie.high_level_commander import HighLevelCommander
+    from cflib.utils.callbacks import Caller
+except ImportError:
+    from ..crtp import *
+    from .appchannel import Appchannel
+    from .commander import Commander
+    from .console import Console
+    from .extpos import Extpos
+    from .link_statistics import LinkStatistics
+    from .localization import Localization
+    from .log import Log
+    from .mem import Memory
+    from .param import Param
+    from .platformservice import PlatformService
+    from .toccache import TocCache
+    from ..crazyflie.high_level_commander import HighLevelCommander
+    from ..utils.callbacks import Caller
 __author__ = 'Bitcraze AB'
 __all__ = ['Crazyflie']
 

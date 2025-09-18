@@ -53,12 +53,18 @@ import errno
 import logging
 import struct
 
-from .toc import Toc
-from .toc import TocFetcher
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.callbacks import Caller
-
+try:
+    from .toc import Toc
+    from .toc import TocFetcher
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.callbacks import Caller
+except ImportError:
+    from .toc import Toc
+    from .toc import TocFetcher
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
+    from ..utils.callbacks import Caller
 __author__ = 'Bitcraze AB'
 __all__ = ['Log', 'LogTocElement']
 

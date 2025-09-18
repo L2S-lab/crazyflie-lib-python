@@ -34,9 +34,10 @@ created/closed.
 """
 import math
 import time
-
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-
+try:
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+except ImportError:
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
 
 class PositionHlCommander:
     """The position High Level Commander"""

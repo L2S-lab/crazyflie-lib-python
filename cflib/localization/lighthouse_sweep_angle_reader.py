@@ -19,9 +19,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-from cflib.localization import LighthouseBsVector
-from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
-
+try:
+    from cflib.localization import LighthouseBsVector
+    from cflib.localization.lighthouse_bs_vector import LighthouseBsVectors
+except ImportError:
+    from .lighthouse_bs_vector import LighthouseBsVector
+    from .lighthouse_bs_vector import LighthouseBsVectors
 
 class LighthouseSweepAngleReader():
     """

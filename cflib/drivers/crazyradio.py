@@ -36,6 +36,9 @@ import usb.core
 try:
     if os.environ['CRTP_PCAP_LOG'] is not None:
         from cflib.crtp.pcap import PCAPLog
+except ImportError:
+    if os.environ['CRTP_PCAP_LOG'] is not None:
+        from ..crtp.pcap import PCAPLog
 except KeyError:
     pass
 

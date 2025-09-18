@@ -39,8 +39,10 @@ with SyncCrazyflie(uri, cf=Crazyflie(rw_cache='./cache')) as scf:
 import logging
 from threading import Event
 
-from cflib.crazyflie import Crazyflie
-
+try:
+    from cflib.crazyflie import Crazyflie
+except ImportError:
+    from ..crazyflie import Crazyflie
 logger = logging.getLogger(__name__)
 
 

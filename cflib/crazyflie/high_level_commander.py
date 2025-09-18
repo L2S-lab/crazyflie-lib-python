@@ -34,9 +34,12 @@ planner to generate smooth trajectories based on actions like "take off",
 import math
 import struct
 
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-
+try:
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+except ImportError:
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
 __author__ = 'Bitcraze AB'
 __all__ = ['HighLevelCommander']
 

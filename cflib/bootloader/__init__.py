@@ -39,14 +39,24 @@ from typing import Tuple
 
 from packaging.version import Version
 
-from .boottypes import BootVersion
-from .boottypes import TargetTypes
-from .cloader import Cloader
-from cflib.crazyflie import Crazyflie
-from cflib.crazyflie.mem import deck_memory
-from cflib.crazyflie.mem import MemoryElement
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-from cflib.utils.power_switch import PowerSwitch
+try:
+    from .boottypes import BootVersion
+    from .boottypes import TargetTypes
+    from .cloader import Cloader
+    from cflib.crazyflie import Crazyflie
+    from cflib.crazyflie.mem import deck_memory
+    from cflib.crazyflie.mem import MemoryElement
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+    from cflib.utils.power_switch import PowerSwitch
+except ImportError:
+    from .boottypes import BootVersion
+    from .boottypes import TargetTypes
+    from .cloader import Cloader
+    from ..crazyflie import Crazyflie
+    from ..crazyflie.mem import deck_memory
+    from ..crazyflie.mem import MemoryElement
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
+    from ..utils.power_switch import PowerSwitch
 
 logger = logging.getLogger(__name__)
 

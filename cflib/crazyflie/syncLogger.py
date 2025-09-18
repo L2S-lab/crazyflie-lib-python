@@ -29,8 +29,10 @@ If no value is available it blocks until log data is received again.
 """
 from queue import Queue
 
-from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
-
+try:
+    from cflib.crazyflie.syncCrazyflie import SyncCrazyflie
+except ImportError:
+    from ..crazyflie.syncCrazyflie import SyncCrazyflie
 
 class SyncLogger:
     DISCONNECT_EVENT = 'DISCONNECT_EVENT'

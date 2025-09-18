@@ -31,10 +31,14 @@ from threading import Thread
 
 import numpy as np
 
-from cflib.crtp.crtpstack import CRTPPacket
-from cflib.crtp.crtpstack import CRTPPort
-from cflib.utils.callbacks import Caller
-
+try:
+    from cflib.crtp.crtpstack import CRTPPacket
+    from cflib.crtp.crtpstack import CRTPPort
+    from cflib.utils.callbacks import Caller
+except ImportError:
+    from ..crtp.crtpstack import CRTPPacket
+    from ..crtp.crtpstack import CRTPPort
+    from ..utils.callbacks import Caller
 __author__ = 'Bitcraze AB'
 __all__ = ['LinkStatistics']
 
