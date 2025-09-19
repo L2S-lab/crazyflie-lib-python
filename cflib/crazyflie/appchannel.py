@@ -29,7 +29,7 @@ try:
     from cflib.crtp.crtpstack import CRTPPort
     from cflib.utils.callbacks import Caller
 except ImportError:
-    from .platformservice import *
+    from .platformservice import APP_CHANNEL
     from ..crtp.crtpstack import CRTPPacket
     from ..crtp.crtpstack import CRTPPort
     from ..utils.callbacks import Caller
@@ -53,10 +53,17 @@ class Appchannel:
     def send_packet(self, data):
         packet = CRTPPacket()
         packet.port = CRTPPort.PLATFORM
-        packet.channel = cflib.crazyflie.platformservice.APP_CHANNEL
+        if hasattr(cflib.crazyflie.platformservice, 'APP_CHANNEL'):
+            packet.channel = cflib.crazyflie.platformservice.APP_CHANNEL
+        else:
+            packet.channel = APP_CHANNEL
         packet.data = data
         self._cf.send_packet(packet)
 
     def _incoming(self, packet: CRTPPacket):
-        if packet.channel == cflib.crazyflie.platformservice.APP_CHANNEL:
+        if hasattr(cflib.crazyflie.platformservice, 'APP_CHANNEL'):
+            channel = cflib.crazyflie.platformservice.APP_CHANNEL
+        else:
+            channel = APP_CHANNEL
+        if packet.channel == channel:
             self.packet_received.call(packet.data)

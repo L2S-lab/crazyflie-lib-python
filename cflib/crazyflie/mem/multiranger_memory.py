@@ -26,7 +26,7 @@ try:
     from .memory_element import MemoryElement
     from cflib.utils.callbacks import Syncer
 except ImportError:
-    from memory_element import MemoryElement
+    from .memory_element import MemoryElement
     from ...utils.callbacks import Syncer
 logger = logging.getLogger(__name__)
 

@@ -56,7 +56,7 @@ try:
     from cflib.crazyflie.high_level_commander import HighLevelCommander
     from cflib.utils.callbacks import Caller
 except ImportError:
-    from ..crtp import *
+    from ..crtp import get_link_driver
     from .appchannel import Appchannel
     from .commander import Commander
     from .console import Console
@@ -260,9 +260,12 @@ class Crazyflie():
         self.state = State.INITIALIZED
         self.link_uri = link_uri
         try:
-            self.link = cflib.crtp.get_link_driver(
-                link_uri, self.link_statistics.radio_link_statistics_callback, self._link_error_cb)
-
+            if callable(get_link_driver):
+                self.link = get_link_driver(
+                    link_uri, self.link_statistics.radio_link_statistics_callback, self._link_error_cb)
+            else:
+                self.link = cflib.crtp.get_link_driver(
+                    link_uri, self.link_statistics.radio_link_statistics_callback, self._link_error_cb)
             if not self.link:
                 message = 'No driver found or malformed URI: {}' \
                     .format(link_uri)

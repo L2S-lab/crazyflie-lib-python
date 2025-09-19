@@ -56,7 +56,7 @@ try:
     from cflib.crtp.radio_link_statistics import RadioLinkStatistics
     from cflib.drivers.crazyradio import Crazyradio
 except ImportError:
-    from ..drivers.crazyradio import crazyradio
+    from ..drivers import crazyradio 
     from .crtpstack import CRTPPacket
     from .exceptions import WrongUriType
     from ..crtp.crtpdriver import CRTPDriver
