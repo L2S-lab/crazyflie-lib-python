@@ -53,17 +53,17 @@ class Appchannel:
     def send_packet(self, data):
         packet = CRTPPacket()
         packet.port = CRTPPort.PLATFORM
-        if hasattr(cflib.crazyflie.platformservice, 'APP_CHANNEL'):
+        try:
             packet.channel = cflib.crazyflie.platformservice.APP_CHANNEL
-        else:
+        except (AttributeError, NameError):
             packet.channel = APP_CHANNEL
         packet.data = data
         self._cf.send_packet(packet)
 
     def _incoming(self, packet: CRTPPacket):
-        if hasattr(cflib.crazyflie.platformservice, 'APP_CHANNEL'):
+        try:
             channel = cflib.crazyflie.platformservice.APP_CHANNEL
-        else:
+        except (AttributeError, NameError):
             channel = APP_CHANNEL
         if packet.channel == channel:
             self.packet_received.call(packet.data)
