@@ -173,6 +173,8 @@ class Crazyflie():
 
         self.connected.add_callback(
             lambda uri: self.link_statistics.start())
+        # self.fully_connected.add_callback(
+        #     lambda uri: self.link_statistics.start())
         self.disconnected.add_callback(
             lambda uri: self.link_statistics.stop())
 

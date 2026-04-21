@@ -26,11 +26,11 @@ a Crazyradio.
 import time
 
 try:
-    import cflib.crtp
+    from cflib.crtp import get_link_driver, RadioDriver
     from cflib.crtp.crtpstack import CRTPPacket
     from cflib.crtp.radiodriver import RadioManager
 except ImportError:
-    from ..crtp import *
+    from ..crtp import get_link_driver, RadioDriver
     from ..crtp.crtpstack import CRTPPacket
     from ..crtp.radiodriver import RadioManager
 
@@ -44,10 +44,10 @@ class PowerSwitch:
     def __init__(self, uri):
         self.uri = uri
         uri_augmented = uri+'?safelink=0&autoping=0&ackfilter=0'
-        self.link = cflib.crtp.get_link_driver(uri_augmented)
+        self.link = get_link_driver(uri_augmented)
         # Switch to legacy mode, if uri options are not available or old Python backend is used
         if not self.link or self.link.get_name() == 'radio':
-            uri_parts = cflib.crtp.RadioDriver.parse_uri(uri)
+            uri_parts = RadioDriver.parse_uri(uri)
             self.devid = uri_parts[0]
             self.channel = uri_parts[1]
             self.datarate = uri_parts[2]

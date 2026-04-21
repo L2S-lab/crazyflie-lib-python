@@ -26,7 +26,7 @@ but is designed to be extended with additional link statistics in the future.
 """
 import struct
 import time
-from threading import Event
+from threading import Event, current_thread
 from threading import Thread
 
 import numpy as np
@@ -160,10 +160,15 @@ class Latency:
         This method stops the background thread and ceases sending further
         ping requests, halting latency measurement.
         """
+        # self._stop_event.set()
+        # if self._ping_thread_instance is not None:
+        #     self._ping_thread_instance.join()
+        #     self._ping_thread_instance = None
         self._stop_event.set()
         if self._ping_thread_instance is not None:
-            self._ping_thread_instance.join()
-            self._ping_thread_instance = None
+            if current_thread() is not self._ping_thread_instance:
+                self._ping_thread_instance.join()
+                self._ping_thread_instance = None
 
     def _ping_thread(self, interval: float = 0.1) -> None:
         """

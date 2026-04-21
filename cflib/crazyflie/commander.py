@@ -32,10 +32,12 @@ try:
     from ..crtp.crtpstack import CRTPPacket
     from ..crtp.crtpstack import CRTPPort
     from ..utils.encoding import compress_quaternion
+    from ..utils.power_switch import PowerSwitch
 except ImportError:
     from cflib.crtp.crtpstack import CRTPPacket
     from cflib.crtp.crtpstack import CRTPPort
     from cflib.utils.encoding import compress_quaternion
+    from cflib.utils.power_switch import PowerSwitch
 __author__ = 'Bitcraze AB'
 __all__ = ['Commander']
 
@@ -238,7 +240,7 @@ class Commander():
                               x, y, z, yaw)
         self._cf.send_packet(pk)
 
-    def send_setpoint_manual(self, roll, pitch, yawrate, thrust_percentage, rate):
+    def send_setpoint_manual(self, roll, pitch, yawrate, thrust_percentage, rate=False):
         """
         Send a new control setpoint for roll/pitch/yaw_Rate/thrust_percentage to the copter with
         the option to send roll rate and pitch rate. If `rate == False`, roll/pitch angle is sent.
@@ -260,3 +262,10 @@ class Commander():
         pk.channel = SET_SETPOINT_CHANNEL
         pk.data = struct.pack('<BfffHB', TYPE_MANUAL, roll, -pitch, yawrate, thrust_16, rate)
         self._cf.send_packet(pk)
+
+    def reboot(self, uri):
+        """
+        Reboot the Crazyflie. Will cause the Crazyflie to disconnect and reconnect.
+        """
+        ps = PowerSwitch(uri)
+        ps.stm_power_cycle()
